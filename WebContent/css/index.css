@@ -1,0 +1,33 @@
+@charset "utf-8";
+/*base*/
+*{margin:0px;padding:0px}
+body{background:url("../images/index_bg.jpg") no-repeat center; font-family: "微软雅黑";font-size: 14px; color:#FAFAFA}
+a{text-decoration: none}
+ul{display:block;list-style: none}
+.container{width:1092px;margin:0px auto}
+
+/*header*/
+#header{height:20px;margin:10px auto;padding:10px 0px}
+#header ul{float:right}
+#header ul li{float:left;margin-right:20px}
+#header ul li a{font-size: 16px; font-weight:blod;color:#FAFAFA}
+
+/*logo*/
+#logo{clear:both;height:80px;margin-top:90px}
+#logo h1{width:280px;height:80px;font-size:67px;font-family:fantasy; margin:0px auto;color:#BFB9B9}
+
+/*mainbody*/
+#mainbody{height:40px;width:766px;margin:10px auto}
+#mainbody form input{width:660px;height:40px;float:left;border:1px solid #BFB9B9;font-size: 16px;color:gray;font-family: "微软雅黑"}
+#mainbody form button{width:100px;height:40px;float:left;background:#DD4B39;border:1px solid #DD4B39;font-size: 16px;font-family: "微软雅黑";color:#FAFAFA}
+
+/*bottom*/
+#bottom{clear:both;height:20px;margin-top: 280px}
+#bottom ul{margin-left:460px;float:left}
+#bottom ul li{float:left;margin-right:20px}
+#bottom ul li a{color:#FAFAFA;text-decoration: underline}
+
+/*footer*/
+#footer{clear:both;height:20px;margin-top:10px}
+#footer p{margin-left: 390px}
+#footer p span{color:#BFB9B9}

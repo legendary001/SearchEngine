@@ -9,7 +9,7 @@
     <description></description>
     <display-name>SnapShotServlet</display-name>
     <servlet-name>SnapShotServlet</servlet-name>
-    <servlet-class>edu.dlnu.xeon.web.SnapShotServlet</servlet-class>
+    <servlet-class>edu.dlnu.xeon.web.controller.SnapShotServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SnapShotServlet</servlet-name>
@@ -19,10 +19,19 @@
     <description></description>
     <display-name>PagingSearchServlet</display-name>
     <servlet-name>PagingSearchServlet</servlet-name>
-    <servlet-class>edu.dlnu.xeon.web.PagingSearchServlet</servlet-class>
+    <servlet-class>edu.dlnu.xeon.web.controller.PagingSearchServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>PagingSearchServlet</servlet-name>
     <url-pattern>/pagingSearchServlet</url-pattern>
   </servlet-mapping>
+  <!-- 针对404错误的处理 -->
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/WEB-INF/ErrorPage/404Error.jsp</location>
+  </error-page>
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/WEB-INF/ErrorPage/500Error.jsp</location>
+  </error-page>
 </web-app>

@@ -25,13 +25,14 @@ import org.apache.lucene.util.NumericUtils;
 import org.wltea.analyzer.lucene.IKQueryParser;
 import org.wltea.analyzer.lucene.IKSimilarity;
 
+import edu.dlnu.xeon.dao.HTMLIndexDao;
 import edu.dlnu.xeon.domain.HTML;
 import edu.dlnu.xeon.domain.QueryResult;
-import edu.dlnu.xeon.utils.HTMLDocumentUtils;
-import edu.dlnu.xeon.utils.LuceneUtils;
+import edu.dlnu.xeon.util.HTMLDocumentUtils;
+import edu.dlnu.xeon.util.LuceneUtils;
 
 
-public class HTMLIndexDao {
+public class HTMLIndexDaoImpl implements HTMLIndexDao{
 	
 	/**
 	 * 保存javaBean到索引库
@@ -44,12 +45,14 @@ public class HTMLIndexDao {
 		try {
 			indexWriter.addDocument(doc);//添加
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
+	
 	public void indexCommit() throws CorruptIndexException, IOException{
 		LuceneUtils.getIndexWriter().commit();
 	}
+	
 	/**
 	 * 分页查询
 	 * @param queryString 执行查询的条件

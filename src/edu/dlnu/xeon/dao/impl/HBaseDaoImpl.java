@@ -29,7 +29,7 @@ import org.apache.hadoop.hbase.util.Bytes;
 import edu.dlnu.xeon.domain.HTML;
 
 
-public class HBaseDao {
+public class HBaseDaoImpl {
 	public static Configuration configuration;
 	public static HTablePool pool;
 	private static HBaseAdmin hBaseAdmin;
@@ -42,17 +42,13 @@ public class HBaseDao {
 		pool=new HTablePool(configuration,1000);
 		try {
 			hBaseAdmin = new HBaseAdmin(configuration);
-		} catch (MasterNotRunningException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ZooKeeperConnectionException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		} 
 	}
-	public HBaseDao(){}
+	public HBaseDaoImpl(){}
 	
-	public HBaseDao(String tableName){
+	public HBaseDaoImpl(String tableName){
 		this.tableName=tableName;
 	}
 	/**
@@ -74,7 +70,7 @@ public class HBaseDao {
 			hBaseAdmin.createTable(tableDescriptor);
 			System.out.println("end create table....");
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 		
 	}
@@ -96,7 +92,7 @@ public class HBaseDao {
 			table.put(put);
 			System.out.println("end insert data....");
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 		
 	}
@@ -115,7 +111,7 @@ public class HBaseDao {
 				System.out.println(tableName+" does not exist...");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
 	
@@ -131,7 +127,7 @@ public class HBaseDao {
 			table.delete(delete);
 			System.out.println("delete row record success");
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
 	/**
@@ -167,7 +163,7 @@ public class HBaseDao {
 				list.add(html);
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}finally{
 			if(rs!=null){
 				rs.close();
@@ -181,7 +177,7 @@ public class HBaseDao {
 	 * @param tableName
 	 * @param rowKey
 	 */
-	public  HTML queryByCondition1(String rowKey){
+	public  HTML queryByRowKey(String rowKey){
 		HTable table=(HTable)pool.getTable(tableName);
 		Get get=new Get(rowKey.getBytes());
 		HTML html=null;
@@ -197,7 +193,7 @@ public class HBaseDao {
 				}
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 		return html;
 	}
@@ -206,7 +202,7 @@ public class HBaseDao {
 	 * @param tableName
 	 * @param rowKey
 	 */
-	public  void queryByCondition2(String key){
+	public  void queryByColumn(String key){
 		HTable table=(HTable)pool.getTable(tableName);
 		Filter filter=new SingleColumnValueFilter(Bytes.toBytes("column1"), null, CompareOp.EQUAL, Bytes.toBytes(key));
 		Scan scan=new Scan();
@@ -221,7 +217,7 @@ public class HBaseDao {
 				}
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}finally{
 			if(rs!=null){
 				rs.close();

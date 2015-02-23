@@ -1,4 +1,4 @@
-package edu.dlnu.xeon.utils;
+package edu.dlnu.xeon.util;
 
 import java.util.Date;
 

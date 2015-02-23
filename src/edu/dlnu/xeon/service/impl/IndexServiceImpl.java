@@ -5,14 +5,14 @@ import java.util.List;
 
 import org.apache.lucene.index.CorruptIndexException;
 
-import edu.dlnu.xeon.dao.impl.HBaseDao;
-import edu.dlnu.xeon.dao.impl.HTMLIndexDao;
+import edu.dlnu.xeon.dao.impl.HBaseDaoImpl;
+import edu.dlnu.xeon.dao.impl.HTMLIndexDaoImpl;
 import edu.dlnu.xeon.domain.HTML;
-import edu.dlnu.xeon.utils.LuceneUtils;
+import edu.dlnu.xeon.util.LuceneUtils;
 
 public class IndexServiceImpl {
-	private HBaseDao hbaseDao=new HBaseDao("html");
-	private HTMLIndexDao indexDao=new HTMLIndexDao();
+	private HBaseDaoImpl hbaseDao=new HBaseDaoImpl("html");
+	private HTMLIndexDaoImpl indexDao=new HTMLIndexDaoImpl();
 	
 	public void createIndex() throws CorruptIndexException, IOException{
 		List<HTML> list=hbaseDao.queryAll();
